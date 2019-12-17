@@ -4,17 +4,37 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'my-estates',
     pathMatch: 'full'
   },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+    path: 'my-estates',
+    loadChildren: () => import('./my-estates/my-estates.module').then( m => m.MyEstatesPageModule)
   },
   {
-    path: 'list',
-    loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  }
+    path: 'locations',
+    loadChildren: () => import('./locations/locations.module').then( m => m.LocationsPageModule)
+  },
+  {
+    path: 'estates',
+    loadChildren: () => import('./estates/estates.module').then( m => m.EstatesPageModule)
+  },
+  {
+    path: 'estate-home',
+    loadChildren: () => import('./estate-home/estate-home.module').then( m => m.EstateHomePageModule)
+  },
+  // {
+  //   path: 'overview',
+  //   loadChildren: () => import('./overview/overview.module').then( m => m.OverviewPageModule)
+  // },
+  // {
+  //   path: 'map',
+  //   loadChildren: () => import('./map/map.module').then( m => m.MapPageModule)
+  // },
+  // {
+  //   path: 'similar',
+  //   loadChildren: () => import('./similar/similar.module').then( m => m.SimilarPageModule)
+  // }
 ];
 
 @NgModule({

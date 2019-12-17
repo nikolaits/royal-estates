@@ -1,5 +1,7 @@
 {
   "name": "royal-estates",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
