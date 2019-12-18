@@ -16,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./locations/locations.module').then( m => m.LocationsPageModule)
   },
   {
-    path: 'estates:locid',
+    path: 'estates/:locid',
     loadChildren: () => import('./estates/estates.module').then( m => m.EstatesPageModule)
   },
   {
