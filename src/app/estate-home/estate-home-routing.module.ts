@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { EstateHomePage } from './estate-home.page';
 
-const routes: Routes = [
+const routes: Routes = [ 
   {
-    path: 'estate-home',
+    path: '', 
     component: EstateHomePage,
     children: [
       {
@@ -13,35 +13,41 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../overview/overview.module#OverviewModule'
-          },
+            loadChildren: () => import('../overview/overview.module').then( m => m.OverviewPageModule)
+
+          }
         ]
       },
-      // {
-      //   path: 'overview',
-      //   children: [
-      //     {
-      //       path: '',
-      //       loadChildren: () => import('../overview/overview.module').then( m => m.OverviewPageModule)
-      //     },
-      //   ]
-      // },
-      // {
-      //   path: 'overview',
-      //   children: [
-      //     {
-      //       path: '',
-      //       loadChildren: () => import('../overview/overview.module').then( m => m.OverviewPageModule)
-      //     },
-      //   ]
-      // },
+      {
+        path: 'map',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../map/map.module').then( m => m.MapPageModule)
+          }
+        ]
+      },
+      {
+        path: 'similar',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../similar/similar.module').then( m => m.SimilarPageModule)
+          }
+        ]
+      },
       {
         path: '',
-        redirectTo: '/app/tabs/overview',
+        redirectTo: '/estate-home/overview',
         pathMatch: 'full'
       }
     ]
-  }
+  },
+  // {
+  //   path: '',
+  //   redirectTo: '/estate-home',
+  //   pathMatch: 'full'
+  // }
 ];
 
 @NgModule({
