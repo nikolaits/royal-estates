@@ -11,16 +11,21 @@
 
 <ion-content>
   <div *ngFor="let item of result">
-    <ion-label background-color="success"> {{item.region}}</ion-label>
+    <ion-item color="success">
+      <ion-label > {{item.region}}</ion-label>
+    </ion-item>
     <ion-list>
         
         <ion-item *ngFor="let estate of item.estates">
-          <ion-thumbnail slot="start">
+          <ion-thumbnail slot="start" >
             <img src="{{estate.image}}">
           </ion-thumbnail>
-          <ion-label  >Ref No.{{estate.refNumber}}</ion-label>
-          <p position="floating">Hayao Miyazaki • 1988</p>
-          <ion-button fill="clear" slot="end">View</ion-button>
+          <div>
+            <h2>Ref No.{{estate.refNumber}}</h2>
+            <p style="font-size: 16px;">{{estate.type}}, {{estate.bedrooms}} Bedrooms</p>
+            <p style="font-size: 14px;">{{name}}, {{estate.region}}</p>
+          </div>
+          <ion-button fill="clear" slot="end" (click)="onDtClick(estate.id)">View</ion-button>
         </ion-item>
     </ion-list>
   </div>

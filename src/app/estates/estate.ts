@@ -1,5 +1,5 @@
 export interface IEstate{
-    id: number;
+    id: string;
     refNumber: string;
     region: string;
     type: string;

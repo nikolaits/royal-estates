@@ -34,9 +34,9 @@ export class LocationsPage implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.subscription.unsubscribe()
   }
-  onClick(id:string){
-    // alert("test "+id); 
-    this.router.navigate(['/estates', id]);
+  onClick(id:string, name:string){
+    // alert("test "+name); 
+    this.router.navigate(['/estates', id, name]);
   }
   async presentLoading() {
     const loading = await this.loadingController.create({
