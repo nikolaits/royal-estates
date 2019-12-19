@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
-import { IEstate } from "./estate";
+import { IEstate } from "../shared/estate";
 import { EstatesService } from "./estates.service";
 import * as _ from 'lodash';
 import { DataService } from '../shared/data.service';
@@ -58,6 +58,7 @@ export class EstatesPage implements OnInit, OnDestroy {
     this.dataService.setRefNumber(item.refNumber);
     this.dataService.setLatitude(item.latitude);
     this.dataService.setLongitude(item.longitude);
+    this.dataService.setRegion(item.region);
     this.router.navigate(['/estate-home']);
   }
 }

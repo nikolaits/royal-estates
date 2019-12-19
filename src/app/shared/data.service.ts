@@ -10,6 +10,7 @@ export class DataService {
   private latitude: string = "";
   private longitude: string = "";
   private locationName: string = "";
+  private region: string = "";
   constructor() { }
   setLocationId(locid: string){
     this.locationId = locid;
@@ -48,5 +49,12 @@ export class DataService {
   }
   getLocationName(){
     return this.locationName;
+  }
+
+  setRegion(tmpregion: string){
+    this.region = tmpregion;
+  }
+  getRegion(){
+    return this.region;
   }
 }

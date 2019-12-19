@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AgmCoreModule } from '@agm/core';
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 import { DataService } from 'src/app/shared/data.service';
 @Component({
   selector: 'app-map',
@@ -23,9 +23,12 @@ export class MapPage implements OnInit {
           lat: parseFloat(lat),
           lng: parseFloat(lng)
       }
+    }
   }
+  navigate(){
+    alert("map");
+    LaunchNavigator.navigate([this.location.latitude, this.location.longitude]);
   }
-
 }
 
 interface Marker {

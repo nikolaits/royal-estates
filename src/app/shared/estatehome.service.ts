@@ -2,11 +2,12 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import {IEstate} from "../shared/estate";
+import {IEstate} from "./estate";
+
 @Injectable({
   providedIn: 'root'
 })
-export class EstatesService {
+export class EstatehomeService {
   private _mainUrl = 'https://royal-estates-ba14f.firebaseio.com/locations-data/';
 
   constructor(private _http: HttpClient) { }

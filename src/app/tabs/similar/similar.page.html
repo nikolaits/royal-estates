@@ -5,5 +5,41 @@
 </ion-header> -->
 
 <ion-content>
-
+  <ion-segment (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="region">
+      <ion-label>Region</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="all" checked>
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <!-- style="width: 80%; height: 70px; margin: 10px auto; box-shadow: 10px 10px 40px 0px rgba(0,0,0,0.75);" -->
+  <div style="position: relative; height: 70px; margin: 10px auto;" >
+    <div class="mydivbox">
+      <ion-select style="float: left;" placeholder="Filter By Type" [disabled]="isDisabled" (ionChange)="onIonChange($event)">
+        <ion-select-option value="Apartment">Apartment</ion-select-option>
+        <ion-select-option value="House" selected>House</ion-select-option>
+        <ion-select-option value="Studio">Studio</ion-select-option>
+      </ion-select>
+      <ion-toggle color="primary" checked="false" (ionChange)="onToggleChange($event)"></ion-toggle>
+    </div>
+  </div>
+  <div *ngFor="let obj of listarray">
+    <ion-item color="success">
+      <ion-label > {{obj.region}}</ion-label>
+    </ion-item>
+    <ion-virtual-scroll [items]="obj.estates" approxItemHeight="320px">
+      <ion-item *virtualItem="let item; let itemBounds = bounds;">
+        <ion-thumbnail slot="start" >
+          <img src="{{item.image}}">
+        </ion-thumbnail>
+        <div>
+          <h2>Ref No.{{item.refNumber}}</h2>
+          <p style="font-size: 16px;">{{item.type}}, {{item.bedrooms}} Bedrooms</p>
+          <p style="font-size: 14px;">{{name}}, {{item.region}}</p>
+        </div>
+        <ion-button fill="clear" slot="end" (click)="onDtClick(item.id, item.region)">View</ion-button>
+      </ion-item>
+    </ion-virtual-scroll>
+  </div>
 </ion-content>
