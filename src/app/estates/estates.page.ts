@@ -4,6 +4,7 @@ import { LoadingController } from '@ionic/angular';
 import { IEstate } from "./estate";
 import { EstatesService } from "./estates.service";
 import * as _ from 'lodash';
+import { DataService } from '../shared/data.service';
 @Component({
   selector: 'app-estates',
   templateUrl: './estates.page.html',
@@ -15,7 +16,7 @@ export class EstatesPage implements OnInit, OnDestroy {
   private subscription;
   public errorMessage: string;
   public result: _.Dictionary<string | IEstate[]>[];
-  constructor(private _estatesService: EstatesService, private activatedRoute: ActivatedRoute, public loadingController: LoadingController, private router: Router) { }
+  constructor(private _estatesService: EstatesService, private activatedRoute: ActivatedRoute, public loadingController: LoadingController, private router: Router, private dataService:DataService) { }
 
   ngOnInit() {
     this.locId = this.activatedRoute.snapshot.paramMap.get('locid');
@@ -47,7 +48,16 @@ export class EstatesPage implements OnInit, OnDestroy {
     });
     await loading.present();
   }
-  onDtClick(id:number){
+  onDtClick(id:number, region:string){
+    this.dataService.setEstId(id.toString());
+    this.dataService.setLocationId(this.locId);
+    this.dataService.setLocationName(this.name);
+    const tmpobject = _.find(this.result, ['region', region]);
+    const item = _.find(<any>tmpobject["estates"], ['id', id]);
+    // alert(item.refNumber);
+    this.dataService.setRefNumber(item.refNumber);
+    this.dataService.setLatitude(item.latitude);
+    this.dataService.setLongitude(item.longitude);
     this.router.navigate(['/estate-home']);
   }
 }

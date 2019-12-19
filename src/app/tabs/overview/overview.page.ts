@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/shared/data.service';
 
 @Component({
   selector: 'app-overview',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OverviewPage implements OnInit {
 
-  constructor() { }
+  constructor(private dataService:DataService) { }
 
   ngOnInit() {
+    let locId = this.dataService.getLocationId();
+    // alert("Loc id "+locId);
   }
 
 }

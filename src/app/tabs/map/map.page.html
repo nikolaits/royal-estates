@@ -5,5 +5,7 @@
 </ion-header> -->
 
 <ion-content>
-
+  <agm-map style="width: 100%; height: 100%;" [latitude]="location.latitude" [longitude]="location.longitude" [mapTypeId]="location.mapType" [zoom]="location.zoom">
+    <agm-marker [latitude]="location.marker.lat" [longitude]="location.marker.lng"></agm-marker>
+  </agm-map>
 </ion-content>
