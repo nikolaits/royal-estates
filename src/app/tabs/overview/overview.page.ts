@@ -35,8 +35,8 @@ export class OverviewPage implements OnInit, OnDestroy {
   };
   public buttonTitle = "SAVE TO MY ESTATES"
   constructor(private dataService:DataService, public loadingController:LoadingController, private _estatehomeService: EstatehomeService, private alertController: AlertController, private toastController: ToastController,private storage: Storage, public events: Events) { }
-
-  ngOnInit() {
+  ngOnInit(){}
+  ionViewWillEnter() {
     this.locId = this.dataService.getLocationId();
     this.estId = this.dataService.getEstId();
     this.locName = this.dataService.getLocationName();

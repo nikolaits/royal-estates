@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, MenuController } from '@ionic/angular';
 import { IEstate } from "../shared/estate";
 import { EstatesService } from "./estates.service";
 import * as _ from 'lodash';
@@ -16,7 +16,7 @@ export class EstatesPage implements OnInit, OnDestroy {
   private subscription;
   public errorMessage: string;
   public result: _.Dictionary<string | IEstate[]>[];
-  constructor(private _estatesService: EstatesService, private activatedRoute: ActivatedRoute, public loadingController: LoadingController, private router: Router, private dataService:DataService) { }
+  constructor(public menuCtrl: MenuController, private _estatesService: EstatesService, private activatedRoute: ActivatedRoute, public loadingController: LoadingController, private router: Router, private dataService:DataService) { }
 
   ngOnInit() {
     this.locId = this.activatedRoute.snapshot.paramMap.get('locid');
@@ -38,6 +38,9 @@ export class EstatesPage implements OnInit, OnDestroy {
       },
       error: error => this.errorMessage = <any>error
     });
+  }
+  ionViewWillEnter() {
+    this.menuCtrl.enable(true);
   }
   ngOnDestroy(){
     this.subscription.unsubscribe()

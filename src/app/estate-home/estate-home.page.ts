@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../shared/data.service';
-
+import {Events, MenuController} from "@ionic/angular";
 
 @Component({
   selector: 'app-estate-home',
@@ -13,13 +12,18 @@ export class EstateHomePage implements OnInit {
   public locName: string = "";
   public refNumber: string = "";
   public isDataFromStorage: boolean = false;
-  constructor(private route: ActivatedRoute, private dataService:DataService) { }
+  constructor(public menuCtrl: MenuController, private dataService:DataService, public events:Events) { }
 
   ngOnInit() {
     this.locid = this.dataService.getLocationId();
     this.locName = this.dataService.getLocationName();
     this.refNumber = this.dataService.getRefNumber();
     this.isDataFromStorage = this.dataService.getIsDataFromStorage();
+    this.events.subscribe('refNumChanged', (args:string) => {
+      this.refNumber = args;
+    })
   }
-
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
 }
