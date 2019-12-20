@@ -37,7 +37,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     this.storage.get('savedEstates').then((val) => {
-      // alert("savedEstates "+val)
       if(val != null){
         this.appPages = JSON.parse(val);
       }

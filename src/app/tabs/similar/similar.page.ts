@@ -53,7 +53,6 @@ export class SimilarPage implements OnInit, OnDestroy {
     this.subscription.unsubscribe()
   }
   segmentChanged(args) {
-    // alert(args.detail.value);
     this.segmtbarValue = args.detail.value;
     if (this.segmtbarValue == "all") {
       this.listarray = [];
@@ -85,7 +84,6 @@ export class SimilarPage implements OnInit, OnDestroy {
   onToggleChange(args) {
     this.isFilterEnabled = args.detail.checked;
     console.log("Objct ", args);
-    // alert("test "+this.isFilterEnabled); 
     if (args.detail.checked) {
 
       this.isDisabled = false;

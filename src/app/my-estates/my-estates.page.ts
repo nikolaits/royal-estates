@@ -15,7 +15,6 @@ export class MyEstatesPage implements OnInit {
 
   ngOnInit() {
     this.storage.get('savedEstates').then((val) => {
-      // alert("savedEstates "+val)
       if(val != null){
         this.savedEstates = JSON.parse(val);
       }

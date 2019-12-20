@@ -21,12 +21,10 @@ export class LocationsPage implements OnInit, OnDestroy {
       next: locations => {
           this.locations = locations;
           console.log("loc",locations);
-          // this.loading.dismiss();
           setTimeout(() => {
             this.loadingController.dismiss();
           }, 2000);
           
-          // this.loading.onDidDismiss();
       },
       error: error => this.errorMessage = <any>error
     });
@@ -34,8 +32,7 @@ export class LocationsPage implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.subscription.unsubscribe()
   }
-  onClick(id:string, name:string){
-    // alert("test "+name); 
+  onClick(id:string, name:string){ 
     this.router.navigate(['/estates', id, name]);
   }
   async presentLoading() {

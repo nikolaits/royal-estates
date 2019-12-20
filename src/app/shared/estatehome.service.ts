@@ -22,7 +22,6 @@ export class EstatehomeService {
 
   getEstate(id: string, estid: string): Observable<IEstate> {
     const estatesUrl = this._mainUrl+id+"/estates/"+estid+".json";
-    console.log("estatesUrl ", estatesUrl);
     return this._http.get<IEstate>(estatesUrl).pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),
         catchError(this.handleError)

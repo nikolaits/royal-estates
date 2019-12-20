@@ -40,7 +40,6 @@ export class OverviewPage implements OnInit, OnDestroy {
     this.locId = this.dataService.getLocationId();
     this.estId = this.dataService.getEstId();
     this.locName = this.dataService.getLocationName();
-    // alert("Loc id "+locId);
     this.subscription = this._estatehomeService.getEstates(this.locId)
     .subscribe({
       next: _estates => {
@@ -66,7 +65,6 @@ export class OverviewPage implements OnInit, OnDestroy {
   }
   getSavedEstates(){
     this.storage.get('savedEstates').then((val) => {
-      // alert("savedEstates "+val)
       if(val != null){
         this.savedEstates = JSON.parse(val);
         if(this.savedEstates.length >0){
