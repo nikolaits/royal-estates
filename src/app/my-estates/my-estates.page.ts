@@ -3,6 +3,7 @@ import { Storage } from '@ionic/storage';
 import {ISavedEstate} from "../shared/savedestate"
 import { DataService } from '../shared/data.service';
 import { Router } from '@angular/router';
+import { Events } from "@ionic/angular";
 @Component({
   selector: 'app-my-estates',
   templateUrl: './my-estates.page.html',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class MyEstatesPage implements OnInit {
   public savedEstates: ISavedEstate[] = [];
-  constructor(private storage: Storage, private dataService:DataService, private router: Router) { }
+  constructor(private storage: Storage, private dataService:DataService, private router: Router, public events: Events) { }
 
   ngOnInit() {
     this.storage.get('savedEstates').then((val) => {
@@ -19,6 +20,9 @@ export class MyEstatesPage implements OnInit {
         this.savedEstates = JSON.parse(val);
       }
     });
+    this.events.subscribe('savedEstatesChanged', (arr: ISavedEstate[]) => {
+      this.savedEstates = arr;
+    })
   }
   onClick(estateid, estateregion, locationId, locationName, refNumber, latitude, longitude){
     this.dataService.setEstId(estateid);

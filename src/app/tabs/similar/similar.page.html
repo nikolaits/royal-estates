@@ -38,7 +38,7 @@
           <p style="font-size: 16px;">{{item.type}}, {{item.bedrooms}} Bedrooms</p>
           <p style="font-size: 14px;">{{name}}, {{item.region}}</p>
         </div>
-        <ion-button fill="clear" slot="end" (click)="onDtClick(item.id, item.region)">View</ion-button>
+        <ion-button fill="clear" slot="end" (click)="onClick(item.id, item.region, item.refNumber, item.latitude, item.longitude)">View</ion-button>
       </ion-item>
     </ion-virtual-scroll>
   </div>

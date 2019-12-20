@@ -4,6 +4,7 @@ import { EstatehomeService } from 'src/app/shared/estatehome.service';
 import { LoadingController, AlertController, ToastController } from '@ionic/angular';
 import { IEstate } from "../../shared/estate";
 import { ISavedEstate } from "../../shared/savedestate";
+import {Events} from "@ionic/angular"
 import { Storage } from '@ionic/storage';
 import * as _ from 'lodash';
 
@@ -33,7 +34,7 @@ export class OverviewPage implements OnInit, OnDestroy {
     longitude: "",
   };
   public buttonTitle = "SAVE TO MY ESTATES"
-  constructor(private dataService:DataService, public loadingController:LoadingController, private _estatehomeService: EstatehomeService, private alertController: AlertController, private toastController: ToastController,private storage: Storage) { }
+  constructor(private dataService:DataService, public loadingController:LoadingController, private _estatehomeService: EstatehomeService, private alertController: AlertController, private toastController: ToastController,private storage: Storage, public events: Events) { }
 
   ngOnInit() {
     this.locId = this.dataService.getLocationId();
@@ -95,6 +96,7 @@ export class OverviewPage implements OnInit, OnDestroy {
     }
     this.savedEstates.push(newSavedEstate);
     this.storage.set('savedEstates', JSON.stringify(this.savedEstates));
+    this.events.publish("savedEstatesChanged", this.savedEstates);
   }
 
   async presentAlertConfirm() {
@@ -115,9 +117,10 @@ export class OverviewPage implements OnInit, OnDestroy {
             _.remove(this.savedEstates, {
               "id": this.estate.id
             });
-            this.storage.set('savedEstates', JSON.stringify(this.savedEstates))
+            this.storage.set('savedEstates', JSON.stringify(this.savedEstates));
             this.presentToast("Estate removed");
             this.buttonTitle = "SAVE TO MY ESTATES";
+            this.events.publish("savedEstatesChanged", this.savedEstates);
           }
         }
       ]

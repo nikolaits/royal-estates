@@ -3,6 +3,7 @@ import { EstatehomeService } from 'src/app/shared/estatehome.service';
 import { LoadingController } from '@ionic/angular';
 import { DataService } from 'src/app/shared/data.service';
 import * as _ from 'lodash';
+import { Router } from '@angular/router';
 import { IEstate } from "../../shared/estate";
 @Component({
   selector: 'app-similar',
@@ -23,7 +24,7 @@ export class SimilarPage implements OnInit, OnDestroy {
   private tmpRegionArr = [];
   private isFilterEnabled = false;
 
-  constructor(private _estatehomeService: EstatehomeService, public loadingController:LoadingController,  private dataService: DataService) { }
+  constructor(private _estatehomeService: EstatehomeService, public loadingController:LoadingController,  private dataService: DataService, private router: Router,) { }
 
   ngOnInit() {
     this.locId = this.dataService.getLocationId();
@@ -124,5 +125,17 @@ export class SimilarPage implements OnInit, OnDestroy {
       message: 'Loadind data'
     });
     await loading.present();
+  }
+
+  onClick(estateid, estateregion, refNumber, latitude, longitude){
+    this.dataService.setEstId(estateid);
+    this.dataService.setLocationId(this.locId);
+    this.dataService.setLocationName(this.name);
+    this.dataService.setRefNumber(refNumber);
+    this.dataService.setLatitude(latitude);
+    this.dataService.setLongitude(longitude);
+    this.dataService.setRegion(estateregion);
+    this.dataService.setIsDataFromStorage(true);
+    this.router.navigate(['/estate-home']);
   }
 }
