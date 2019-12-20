@@ -11,6 +11,7 @@ export class DataService {
   private longitude: string = "";
   private locationName: string = "";
   private region: string = "";
+  private isDataFromStorage: boolean = false;
   constructor() { }
   setLocationId(locid: string){
     this.locationId = locid;
@@ -56,5 +57,11 @@ export class DataService {
   }
   getRegion(){
     return this.region;
+  }
+  setIsDataFromStorage(tmp: boolean){
+    this.isDataFromStorage = tmp;
+  }
+  getIsDataFromStorage(){
+    return this.isDataFromStorage;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { EstatehomeService } from 'src/app/shared/estatehome.service';
 import { LoadingController } from '@ionic/angular';
 import { DataService } from 'src/app/shared/data.service';
@@ -9,7 +9,7 @@ import { IEstate } from "../../shared/estate";
   templateUrl: './similar.page.html',
   styleUrls: ['./similar.page.scss'],
 })
-export class SimilarPage implements OnInit {
+export class SimilarPage implements OnInit, OnDestroy {
   private segmtbarValue = "all";
   private selectValue = "House"
   private locId:string = "";
@@ -82,8 +82,11 @@ export class SimilarPage implements OnInit {
     
   }
   onToggleChange(args){
-    this.isFilterEnabled = args.detail.value;
-    if(args.detail.value){
+    this.isFilterEnabled = args.detail.checked;
+    console.log("Objct ", args);
+    // alert("test "+this.isFilterEnabled); 
+    if(args.detail.checked){
+
       this.isDisabled = false;
       this.filterData();
     } else{

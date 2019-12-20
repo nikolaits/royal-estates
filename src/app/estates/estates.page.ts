@@ -48,17 +48,17 @@ export class EstatesPage implements OnInit, OnDestroy {
     });
     await loading.present();
   }
-  onDtClick(id:number, region:string){
-    this.dataService.setEstId(id.toString());
+  onDtClick(id:string, region:string){
+    this.dataService.setEstId(id);
     this.dataService.setLocationId(this.locId);
     this.dataService.setLocationName(this.name);
     const tmpobject = _.find(this.result, ['region', region]);
     const item = _.find(<any>tmpobject["estates"], ['id', id]);
-    // alert(item.refNumber);
     this.dataService.setRefNumber(item.refNumber);
     this.dataService.setLatitude(item.latitude);
     this.dataService.setLongitude(item.longitude);
     this.dataService.setRegion(item.region);
+    this.dataService.setIsDataFromStorage(false);
     this.router.navigate(['/estate-home']);
   }
 }

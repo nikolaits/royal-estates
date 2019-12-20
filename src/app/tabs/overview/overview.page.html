@@ -3,7 +3,39 @@
     <ion-title>overview</ion-title>
   </ion-toolbar>
 </ion-header> -->
-
 <ion-content>
-<p>Overview</p>
+  <ion-refresher slot="fixed" (ionRefresh)="refreshEstate($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card >
+    <img [src]="estate.image"/>
+    <ion-card-content>
+      <ion-button size="small" fill="outline" slot="start" (click)="onButtonClick()">
+        <ion-icon name="bookmark"></ion-icon>
+        {{buttonTitle}}
+      </ion-button>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <p>{{estate.type}}</p>
+          </ion-col>
+          <ion-col>
+            <p>Area: {{estate.area}} m<sup>2</sup></p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <p>
+              <ion-badge color="primary">{{estate.bedrooms}}</ion-badge>
+              Bedrooms
+            </p>
+          </ion-col>
+          <ion-col>
+            <p>Price: ${{estate.price}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+        <p>{{estate.address}}</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

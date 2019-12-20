@@ -15,5 +15,30 @@
 </ion-header>
 
 <ion-content>
-  <ion-button color="primary" href="/locations">Find a Location</ion-button>
+  <div class="mydivbox" *ngIf="savedEstates.length < 1">
+    <h2>Select the button below and find new locations</h2>
+    <ion-button expand="full"  color="primary" href="/locations">
+      <ion-icon name="search"></ion-icon>
+      Find a Location</ion-button>
+  </div>
+  <div class="mydivboxitems" *ngIf="savedEstates.length > 0">
+    <p slot="start">Saved Estates</p>
+    <ion-list>
+      <ion-item *ngFor="let estate of savedEstates">
+        <ion-thumbnail slot="start" >
+          <img src="{{estate.image}}">
+        </ion-thumbnail>
+        <div>
+          <h2>Ref No.{{estate.refNumber}}</h2>
+          <p style="font-size: 16px;">{{estate.type}}, {{estate.bedrooms}} Bedrooms</p>
+          <p style="font-size: 14px;">{{estate.locationName}}, {{estate.region}}</p>
+        </div>
+        <ion-button fill="clear" slot="end" (click)="onClick(estate.id, estate.region, estate.locationId, estate.locationName, estate.refNumber, estate.latitude, estate.longitude)">View</ion-button>
+      </ion-item>
+    </ion-list>
+    <p>To save more estates, select a location, then you can save estates from their estate overview page.</p>
+    <ion-button expand="full"  color="primary" href="/locations">
+      <ion-icon name="search"></ion-icon>
+      Find a Location</ion-button>
+  </div>
 </ion-content>
