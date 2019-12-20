@@ -26,7 +26,6 @@ export class MapPage implements OnInit {
     }
   }
   navigate(){
-    alert("map");
     LaunchNavigator.navigate([this.location.latitude, this.location.longitude]);
   }
 }

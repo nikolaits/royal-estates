@@ -16,6 +16,7 @@
   <!-- style="width: 80%; height: 70px; margin: 10px auto; box-shadow: 10px 10px 40px 0px rgba(0,0,0,0.75);" -->
   <div style="position: relative; height: 70px; margin: 10px auto;" >
     <div class="mydivbox">
+      <ion-label style="float: left; margin-top: 10px;">Filter By Type: </ion-label>
       <ion-select style="float: left;" placeholder="Filter By Type" [disabled]="isDisabled" (ionChange)="onIonChange($event)">
         <ion-select-option value="Apartment">Apartment</ion-select-option>
         <ion-select-option value="House" selected>House</ion-select-option>
